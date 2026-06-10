@@ -1,0 +1,257 @@
+:root {
+  --primary: #ff3f6c;
+  --secondary: #11293b;
+  --white: #ffffff;
+  --light: #f8fafc;
+  --border: #e5e7eb;
+}
+
+/* =========================
+   Navbar
+========================= */
+
+.navbar {
+  width: 100%;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar-container {
+  width: 100%;
+  padding: 8px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* =========================
+   Logo
+========================= */
+
+.logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+/* =========================
+   Menu
+========================= */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--secondary);
+  font-size: 15px;
+  font-weight: 500;
+  transition: .3s;
+}
+
+.nav-links li a:hover {
+  color: var(--primary);
+}
+
+/* =========================
+   Search
+========================= */
+
+.search-box {
+  display: flex;
+  flex: 1;
+  max-width: 450px;
+}
+
+.search-box input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-right: none;
+  padding: 11px 15px;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-box button {
+  width: 50px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+/* =========================
+   Actions
+========================= */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--secondary);
+  font-size: 18px;
+  position: relative;
+}
+
+.icon-item span {
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.icon-item:hover {
+  color: var(--primary);
+}
+
+/* Cart Badge */
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+}
+
+/* =========================
+   Mobile Button
+========================= */
+
+.mobile-btn {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+/* =========================
+   Mobile Menu
+========================= */
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-search {
+  display: flex;
+  margin-top: 15px;
+}
+
+.mobile-search input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.mobile-search button {
+  width: 50px;
+  border: none;
+  background: var(--primary);
+  color: white;
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 1200px) {
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .search-box {
+    max-width: 320px;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 992px) {
+
+  .nav-links,
+  .search-box,
+  .icon-item {
+    display: none;
+  }
+
+  .mobile-btn {
+    display: block;
+  }
+
+  .mobile-menu {
+    background: white;
+    display: flex;
+    flex-direction: column;
+
+    max-height: 0;
+    overflow: hidden;
+
+    transition: .4s ease;
+  }
+
+  .mobile-menu.show {
+    max-height: 500px;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: var(--secondary);
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-menu a:hover {
+    color: var(--primary);
+  }
+}
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 576px) {
+
+  .navbar-container {
+    padding: 12px 15px;
+  }
+
+  .logo img {
+    height: 45px;
+  }
+}
