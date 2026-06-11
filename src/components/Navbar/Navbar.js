@@ -1,69 +1,78 @@
 import React, { useState } from "react";
 import {
   FaSearch,
+  FaUser,
   FaHeart,
   FaShoppingCart,
-  FaUser,
   FaBars,
   FaTimes,
 } from "react-icons/fa";
 
-import logo from "../../assets/images/icons/logo.png";
+import { Link } from "react-router-dom";
 
 import "./Navbar.css";
+import logo from "../../assets/images/icons/logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const categories = [
+    "Men",
+    "Women",
+    "Kids",
+    "Beauty",
+    "Home & Living",
+    "Electronics",
+    "Offers",
+  ];
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <>
-      <nav className="navbar">
-        <div className="navbar-container">
+      <header className="navbar-wrapper">
+        
+        {/* TOP NAVBAR */}
+        <div className="navbar-top">
 
-          {/* Logo */}
-          <div className="logo">
+          {/* LOGO */}
+          <Link to="/" className="logo">
             <img src={logo} alt="Fashion Store" />
-          </div>
+          </Link>
 
-          {/* Navigation Links */}
-          <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/">Shop</a></li>
-            <li><a href="/">Categories</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/">Contact</a></li>
-          </ul>
-
-          {/* Search */}
+          {/* SEARCH */}
           <div className="search-box">
             <input
               type="text"
-              placeholder="Search products, brands and more..."
+              placeholder="Search for products, brands and more..."
             />
+
             <button>
               <FaSearch />
             </button>
           </div>
 
-          {/* Actions */}
-          <div className="nav-actions">
+          {/* RIGHT ICONS */}
+          <div className="nav-icons">
 
-            <a href="/" className="icon-item">
+            <Link to="/login" className="nav-icon">
               <FaUser />
               <span>Login</span>
-            </a>
+            </Link>
 
-            <a href="/" className="icon-item">
+            <Link to="/wishlist" className="nav-icon">
               <FaHeart />
               <span>Wishlist</span>
-            </a>
+            </Link>
 
-            <a href="/" className="icon-item cart">
+            <Link to="/cart" className="nav-icon cart-icon">
               <FaShoppingCart />
               <span>Cart</span>
-              <div className="badge">2</div>
-            </a>
 
+              <div className="cart-badge">2</div>
+            </Link>
+
+            {/* MOBILE BUTTON */}
             <button
               className="mobile-btn"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -73,25 +82,60 @@ const Navbar = () => {
 
           </div>
         </div>
-      </nav>
 
-      {/* Mobile Menu */}
+        {/* BOTTOM NAVBAR */}
+        <div className="navbar-bottom">
 
-      <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
-        <a href="/">Home</a>
-        <a href="/">Shop</a>
-        <a href="/">Categories</a>
-        <a href="/">About</a>
-        <a href="/">Contact</a>
-        <a href="/">Login</a>
-        <a href="/">Register</a>
+          <Link to="/categories" className="category-link">
+            <FaBars />
+            <span>Categories</span>
+          </Link>
 
-        <div className="mobile-search">
-          <input type="text" placeholder="Search..." />
-          <button>
-            <FaSearch />
-          </button>
+          {categories.map((item, index) => (
+            <Link
+              key={index}
+              to={`/category/${item.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {item}
+            </Link>
+          ))}
+
         </div>
+      </header>
+
+      {/* MOBILE MENU */}
+      <div className={`mobile-menu ${menuOpen ? "show" : ""}`}>
+
+        <Link to="/categories" onClick={closeMenu}>
+          Categories
+        </Link>
+
+        {categories.map((item, index) => (
+          <Link
+            key={index}
+            to={`/category/${item.toLowerCase().replace(/\s+/g, "-")}`}
+            onClick={closeMenu}
+          >
+            {item}
+          </Link>
+        ))}
+
+        <Link to="/login" onClick={closeMenu}>
+          Login
+        </Link>
+
+        <Link to="/wishlist" onClick={closeMenu}>
+          Wishlist
+        </Link>
+
+        <Link to="/cart" onClick={closeMenu}>
+          Cart
+        </Link>
+
+        <Link to="/register" onClick={closeMenu}>
+          Register
+        </Link>
+
       </div>
     </>
   );
